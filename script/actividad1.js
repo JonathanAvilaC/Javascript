@@ -1,174 +1,186 @@
-// Esto lo hago pa divertirme ♪
-let imp = (msj) => console.log(msj);
+// Initial environment
+const inst = [
+    "[Modo de juego]",
+    "Este es un juego en base a probabilidades.",
+    "Robocito y tú tienen 20 de vida.",
+    "Cada lanzamiento varía entre 0 y 10, que se irá restando a la vida del contrincante.",
+    "Ganas si logras destruirlo antes que él a ti. Buena suerte!",
+    "\n"
+]
+console.log(inst.join("\n"))
 
-imp("Modo de juego")
-imp("Este es un juego en base a probabilidades")
-imp("Robocito y tú tienen 20 de vida")
-imp("Cada lanzamiento varía entre 0 y 10, que se irá restando a la vida del contrincante")
-imp("Ganas si logras destruirlo antes que él a ti. Buena suerte!")
-imp("")
+const botName = "Robocito"
 
+const messages = {
+    init_msg: "Debes abrir la consola con [F12] para ver las instrucciones y jugar. Si no las ves, presiona cancelar.",
+    sec_msg: "Se recomienda abrir la consola lo suficiente para una correcta visualización.",
+    name_msg: ['Ingresa tu nombre', 'Debes ingresar un nombre'],
+    game_msg: ['Excelente tirada!', 'Que buena tirada', 'Eso estuvo decente', 'Hoy la suerte no te sonríe', 'Definitivamente la suerte no te sonríe'],
+    turn_msg: "Es tu turno ¿Deseas lanzar? Si presionas cancelar tu turno se saltará.",
+    p1_win: `Derrotaste a ${botName} ¡Felicitaciones!`,
+    p2_win: `Que lastima, no pudiste vencer a ${botName}.`,
+    draw: "¡Es un empate! Ambos se aniquilaron.",
+    try_again: "Deseas volver a jugar",
+    choice1: "Si cambias de opinión solo debes refrescar la página.",
+    choice2: "La página se refrescará al presionar OK.",
+}
 
-let cond = window.confirm("Debes abrir la consola con [F12] para ver las instrucciones y jugar. Si no las ves, presiona cancelar.");
+let cond = window.confirm(messages.init_msg);
+const playersData = {
+    player1: null,
+    player2: botName,
+    life1: 20,
+    life2: 20,
+    playerRandom1: 0,
+    playerRandom2: 0,
+    turn_p1: undefined,
+    game: true,
+}
 
+let caseFunct = (randomNumber, messages) => {
+    switch (true) {
+        case (randomNumber > 9):
+            console.log(messages.game_msg[0]);
+            break;
+        case (randomNumber > 4):
+            console.log(messages.game_msg[1]);
+            break;
+        case (randomNumber > 2):
+            console.log(messages.game_msg[2]);
+            break;
+        case (randomNumber > 0):
+            console.log(messages.game_msg[3]);
+            break;
+        default:
+            console.log(messages.game_msg[4]);
+            break;
+    }
+}
+
+let lifeBar = (playersData) =>{
+    console.log("_".repeat(60))
+    console.log(`${playersData.player1} (${playersData.life1}) ` + "=".repeat(playersData.life1))
+    console.log("_".repeat(60))
+    console.log("_".repeat(60))
+    console.log(`${playersData.player2} (${playersData.life2}) ` + "=".repeat(playersData.life2))
+    console.log("_".repeat(60))
+}
+
+// start game
 if (cond) {
-    alert("Se recomienda abrir la consola lo suficiente para una correcta visualización.");
-    let name = prompt("Ingresa tu nombre");
+    alert(messages.sec_msg);
+    playersData.player1 = prompt(messages.name_msg[0]);
 
-    while (name == "" || name == null) {
-        alert("Debes ingresar un nombre");
-        name = prompt("Ingresa tu nombre");
+    while (playersData.player1 == "" || playersData.player1 == null) {
+        alert(messages.name_msg[1]);
+        playersData.player1 = prompt(messages.name_msg[0]);
     }
 
-    let player1 = 20
-    let player2 = 20
-    let p1;
-    let playerRandom1;
-    let playerRandom2;
-    let character = "=";
-    let game = true;
-
-    let m1 = "Excelente tirada!"
-    let m2 = "Que buena tirada"
-    let m3 = "Eso estuvo decente"
-    let m4 = "Hoy la suerte no te sonríe"
-    let m5 = "Definitivamente la suerte no te sonríe"
-
-    let caseFunct = (randomNumber) => {
-        switch (true) {
-            case (randomNumber > 9):
-                imp(m1);
-                break;
-            case (randomNumber > 4):
-                imp(m2);
-                break;
-            case (randomNumber > 2):
-                imp(m3);
-                break;
-            case (randomNumber > 0):
-                imp(m4);
-                break;
-            default:
-                imp(m5);
-                break;
-        }
-    }
-
-    while (game) {
+    while (playersData.game) {
         console.clear();
-
-        let lifeBar = (name, player1, player2) =>{
-            imp("_".repeat(60))
-            imp(`${name} (${player1}) ` + character.repeat(player1))
-            imp("_".repeat(60))
-            imp("_".repeat(60))
-            imp(`Robocito (${player2}) ` + character.repeat(player2))
-            imp("_".repeat(60))
-        }
-
-        if (p1 != undefined) {
-            imp("Comments:")
-            if (!p1) {
-                imp(name + " ha pasado su turno")
+        if (playersData.turn_p1 != undefined) {
+            console.log("Comments:")
+            if (!playersData.turn_p1) {
+                console.log(`${playersData.player1} ha pasado su turno`)
             } else {
-                imp(name + " ha sacado " + playerRandom1)
-                caseFunct(playerRandom1);
+                console.log(`${playersData.player1} ha sacado ${playersData.playerRandom1}`)
+                caseFunct(playersData.playerRandom1, messages);
             }
-            imp("")
-            imp("Robocito ha sacado " + playerRandom2)
-            caseFunct(playerRandom2);
-            lifeBar(name, player1, player2);
+            console.log("")
+            console.log(`${playersData.player2} ha sacado ${playersData.playerRandom2}`)
+            caseFunct(playersData.playerRandom2, messages);
+            lifeBar(playersData);
         }
 
-        imp("        __\\_/__")
-        imp("        | @ @ |")
-        imp("        | +++ | ")
-        imp("  0=======   =======0 ")
-        imp("          || ")
-        imp("          || ")
-        imp("         //\\\\")
-        imp("        //  \\\\")
-        imp("       //    \\\\")
-        imp("     <==      ==>")
+        console.log("        __\\_/__")
+        console.log("        | @ @ |")
+        console.log("        | +++ | ")
+        console.log("  0=======   =======0 ")
+        console.log("          || ")
+        console.log("          || ")
+        console.log("         //\\\\")
+        console.log("        //  \\\\")
+        console.log("       //    \\\\")
+        console.log("     <==      ==>")
 
-        p1 = window.confirm("Es tu turno ¿Deseas lanzar? Si presionas cancelar tu turno se saltará.")
-        playerRandom1 = Math.floor(Math.random() * 10);
-        playerRandom2 = Math.floor(Math.random() * 10);
+        playersData.turn_p1 = window.confirm(messages.turn_msg)
+        playersData.playerRandom1 = Math.floor(Math.random() * 10);
+        playersData.playerRandom2 = Math.floor(Math.random() * 10);
 
-        if (p1) {
-            player2 = player2 - playerRandom1;
+        if(playersData.turn_p1) {
+            playersData.life2 = playersData.life2 - playersData.playerRandom1;
         }
-        player1 = player1 - playerRandom2;
+        playersData.life1 = playersData.life1 - playersData.playerRandom2;
 
-        if (player2 <= 0 && player1 > 0) {
-            player2 = 0;
-            game = false;
+        if (playersData.life2 <= 0 && playersData.life1 > 0) {
+            playersData.life2 = 0;
+            playersData.game = false;
             console.clear();
-            lifeBar(name, player1, player2);
+            lifeBar(playersData);
 
-            imp("        ~~    ~~")
-            imp("        __\\_/__")
-            imp("        | X X |")
-            imp("        | ___ | ")
-            imp("  0=======   =======0 ")
-            imp("          || ")
-            imp("          || ")
-            imp("         //\\\\")
-            imp("        //  \\\\")
-            imp("       //    \\\\")
-            imp("     <==      ==>")
-            alert("Derrotaste a Robocito ¡Felicitaciones!")
+            console.log("        ~~    ~~")
+            console.log("        __\\_/__")
+            console.log("        | X X |")
+            console.log("        | ___ | ")
+            console.log("  0=======   =======0 ")
+            console.log("          || ")
+            console.log("          || ")
+            console.log("         //\\\\")
+            console.log("        //  \\\\")
+            console.log("       //    \\\\")
+            console.log("     <==      ==>")
+            alert(messages.p1_win)
 
-        } else if (player1 <= 0 && player2 > 0) {
-            player1 = 0;
-            game = false;
+        } else if (playersData.life1 <= 0 && playersData.life2 > 0) {
+            playersData.life1 = 0;
+            playersData.game = false;
             console.clear();
-            lifeBar(name, player1, player2);
+            lifeBar(playersData);
 
-            imp("        ||")
-            imp("        ||")
-            imp("   ====    ====")
-            imp("        ||")
-            imp("        || ")
-            imp("        || ")
-            imp("   =============")
-            imp("   =============")
-            alert("Que lastima, no pudiste vencer a Robocito.")
+            console.log("        ||")
+            console.log("        ||")
+            console.log("   ====    ====")
+            console.log("        ||")
+            console.log("        || ")
+            console.log("        || ")
+            console.log("   =============")
+            console.log("   =============")
+            alert(messages.p2_win)
 
-        } else if (player1 <= 0 && player2 <= 0) {
-            player1 = 0;
-            player2 = 0;
-            game = false;
+        } else if (playersData.life1 <= 0 && playersData.life2 <= 0) {
+            playersData.life1 = 0;
+            playersData.life2 = 0;
+            playersData.game = false;
             console.clear();
-            lifeBar(name, player1, player2);
+            lifeBar(playersData);
 
-            imp("           ~~    ~~")
-            imp("           __\\_/__")
-            imp("           | X X |")
-            imp("           | ___ |                        ||")
-            imp("     0=======   =======0                  ||")
-            imp("              ||                     ====    ====")
-            imp("              ||                          ||")
-            imp("             //\\\\                         ||")
-            imp("            //  \\\\                        || ")
-            imp("           //    \\\\                  =============")
-            imp("         <==      ==>                =============")
-            alert("¡Es un empate! Ambos se aniquilaron.")
+            console.log("           ~~    ~~")
+            console.log("           __\\_/__")
+            console.log("           | X X |")
+            console.log("           | ___ |                        ||")
+            console.log("     0=======   =======0                  ||")
+            console.log("              ||                     ====    ====")
+            console.log("              ||                          ||")
+            console.log("             //\\\\                         ||")
+            console.log("            //  \\\\                        || ")
+            console.log("           //    \\\\                  =============")
+            console.log("         <==      ==>                =============")
+            alert(messages.draw)
 
         }
     }
 
-    if (!game) {
-        let tryagain = window.confirm("Desdes volver a jugar")
+    if (!playersData.game) {
+        let tryagain = window.confirm(messages.try_again)
 
         if (tryagain) {
             location.reload();
         } else {
-            alert("Si cambias de opinión solo debes refrescar la página.")
+            alert(messages.choice1)
         }
     }
 
 } else {
-    alert("La página se refrescará al presionar OK.");
+    alert(messages.choice2);
     location.reload();
 }
