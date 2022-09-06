@@ -1,15 +1,14 @@
 // Initial environment
+const botName = "Robocito"
 const inst = [
     "[Modo de juego]",
     "Este es un juego en base a probabilidades.",
-    "Robocito y tú tienen 20 de vida.",
+    `${botName} y tú tienen 20 de vida.`,
     "Cada lanzamiento varía entre 0 y 10, que se irá restando a la vida del contrincante.",
     "Ganas si logras destruirlo antes que él a ti. Buena suerte!",
     "\n"
 ]
 console.log(inst.join("\n"))
-
-const botName = "Robocito"
 
 const messages = {
     init_msg: "Debes abrir la consola con [F12] para ver las instrucciones y jugar. Si no las ves, presiona cancelar.",
