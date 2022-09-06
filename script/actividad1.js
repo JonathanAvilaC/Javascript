@@ -1,14 +1,23 @@
 // Initial environment
-const botName = "Robocito"
-const inst = [
+
+const playersData = {
+    player1: null,
+    player2: "Robocito",
+    life1: 20,
+    life2: 20,
+    playerRandom1: 0,
+    playerRandom2: 0,
+    turn_p1: undefined,
+    game: null,
+}
+
+const instructions = [
     "[Modo de juego]",
     "Este es un juego en base a probabilidades.",
-    `${botName} y tú tienen 20 de vida.`,
+    `${playersData.player2} y tú tienen 20 de vida.`,
     "Cada lanzamiento varía entre 0 y 10, que se irá restando a la vida del contrincante.",
     "Ganas si logras destruirlo antes que él a ti. Buena suerte!",
-    "\n"
 ]
-console.log(inst.join("\n"))
 
 const messages = {
     init_msg: "Debes abrir la consola con [F12] para ver las instrucciones y jugar. Si no las ves, presiona cancelar.",
@@ -16,24 +25,12 @@ const messages = {
     name_msg: ['Ingresa tu nombre', 'Debes ingresar un nombre'],
     game_msg: ['Excelente tirada!', 'Que buena tirada', 'Eso estuvo decente', 'Hoy la suerte no te sonríe', 'Definitivamente la suerte no te sonríe'],
     turn_msg: "Es tu turno ¿Deseas lanzar? Si presionas cancelar tu turno se saltará.",
-    p1_win: `Derrotaste a ${botName} ¡Felicitaciones!`,
-    p2_win: `Que lastima, no pudiste vencer a ${botName}.`,
+    p1_win: `Derrotaste a ${playersData.player2} ¡Felicitaciones!`,
+    p2_win: `Que lastima, no pudiste vencer a ${playersData.player2}.`,
     draw: "¡Es un empate! Ambos se aniquilaron.",
     try_again: "Deseas volver a jugar",
     choice1: "Si cambias de opinión solo debes refrescar la página.",
     choice2: "La página se refrescará al presionar OK.",
-}
-
-let cond = window.confirm(messages.init_msg);
-const playersData = {
-    player1: null,
-    player2: botName,
-    life1: 20,
-    life2: 20,
-    playerRandom1: 0,
-    playerRandom2: 0,
-    turn_p1: undefined,
-    game: true,
 }
 
 let caseFunct = (randomNumber, messages) => {
@@ -66,8 +63,13 @@ let lifeBar = (playersData) =>{
 }
 
 // start game
-if (cond) {
+console.log(instructions.join("\n"))
+
+playersData.game = window.confirm(messages.init_msg);
+
+if (playersData.game) {
     alert(messages.sec_msg);
+    //Ingresar nombre
     playersData.player1 = prompt(messages.name_msg[0]);
 
     while (playersData.player1 == "" || playersData.player1 == null) {
