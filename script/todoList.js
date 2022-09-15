@@ -6,7 +6,13 @@ class addTask {
 }
 const imprMsg = () =>{
     const initMsg = [
-        "Ingresa una de las siguientes opciones:","[1] Ingresar nueva tarea", "[2] Buscar una tarea", "[3] Mover una tarea", "[4] Modificar una tarea", "[5] Eliminar una tarea", "[6] Finalizar"
+        "Ingresa una de las siguientes opciones:",
+        "[1] Ingresar nueva tarea",
+        "[2] Buscar una tarea",
+        "[3] Mover una tarea",
+        "[4] Modificar una tarea",
+        "[5] Eliminar una tarea",
+        "[6] Finalizar"
     ]
     return initMsg.join("\n");
 }
@@ -17,7 +23,25 @@ const doneList = []
 let loop = true
 
 let listTasks = () => {
-    todoList.length > 0 ? array.forEach(element => { element.todoList}) : console.log('No hay tareas por hacer')
+    console.clear()
+    if(todoList.length > 0){
+        console.log(`Tareas por hacer: ${todoList.length}`)
+        todoList.forEach(element => { 
+            console.log(`|| ${element.task} - ${element.descTask == undefined ? 'Sin descripción': element.descTask} ||`)
+        })
+    }
+    if(progressList.length > 0){
+        console.log(`Tareas en progreso: ${progressList.length}`)
+        progressList.forEach(element => { 
+            console.log(`|| ${element.task} - ${element.descTask == undefined ? 'Sin descripción': element.descTask} ||`)
+        })
+    }
+    if(doneList.length > 0){
+        console.log(`Tareas finalizadas: ${doneList.length}`)
+        doneList.forEach(element => { 
+            console.log(`|| ${element.task} - ${element.descTask == undefined ? 'Sin descripción': element.descTask} ||`)
+        })
+    }
 }
 
 let addTaskFn = () =>{
