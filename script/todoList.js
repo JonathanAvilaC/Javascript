@@ -1,4 +1,4 @@
-class addTask {
+class Task {
     constructor(task, descTask) {
         this.task = task;
         this.descTask = descTask;
@@ -46,7 +46,7 @@ let listTasks = (option) => {
     return valid
 }
 
-let addTaskFn = () => {
+let TaskFn = () => {
     let tl = true
     while (tl) {
         let task = prompt("Ingrese nombre de la tarea");
@@ -58,7 +58,7 @@ let addTaskFn = () => {
             descTask = prompt("Ingrese la descripción");
         }
 
-        todoList.push(new addTask(task, descTask));
+        todoList.push(new Task(task, descTask));
         let repeat = window.confirm("Deseas volver a agregar otra tarea?");
 
         if (!repeat) {
@@ -116,7 +116,7 @@ let searchTask = () => {
 
 let caseFunc = (option) => {
     if (option == 1) {
-        addTaskFn()
+        TaskFn()
         return
     }
     if (option == 2) {
@@ -134,20 +134,19 @@ let caseFunc = (option) => {
 }
 
 const todoList = []
+todoList.push(new Task('Coder DOM 19/09', 'Interactuando con HTML'))
+todoList.push(new Task('Coder Eventos 21/09', 'Incorporar eventos al proyecto'))
+
 const progressList = []
 const doneList = []
-let loop = true
 
-while (loop) {
-    const msg = imprMsg()
-    let option = Number(prompt(msg))
-    while (option < 0 || option > 4) {
-        option = Number(prompt(msg))
-    }
-    caseFunc(option)
-}
+const todoDiv = document.getElementById("todo")
+let cardTemplate = document.getElementById("cardTemp")
+let card = cardTemplate.content.querySelector(".card")
 
-
-
-
-
+todoList.forEach((task)=> {
+    let newCard = card.cloneNode(true)
+    todoDiv.appendChild(newCard)
+    newCard.children[0].children[0].innerHTML = task.task
+    newCard.children[0].children[1].innerHTML = task.descTask
+})
