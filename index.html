@@ -46,21 +46,27 @@
                     <div class="input-group w-auto p-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-pen"></i></span>
                         <input type="text" class="form-control" placeholder="Descripción" aria-label="name"
-                            aria-describedby="basic-addon1" id="iName">
+                            aria-describedby="basic-addon1" id="iDesc">
 
                     </div>
-                    <div class="float-end"><button type="button" class="btn btn-outline-success" id="agregar"
-                            style="margin-right: 18px;">Agregar tarea</button></div>
+                    <div class="alert alert-dismissible fade show" role="alert" id="msgAddTask" hidden> 
+                    </div>
+                    <div class="float-end"><button type="button" class="btn btn-outline-success" id="btnAddTask"
+                            style="margin-right: 18px;">Agregar tarea</button>
+                    </div>
+                    
                 </div>
                 <div class="col-lg-4">
                     <H3>Borrar tarea</H3>
                     <div class="input-group w-auto p-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ol"></i></span>
-                        <input type="text" class="form-control" placeholder="N° de tarea" aria-label="name"
-                            aria-describedby="basic-addon1" id="iName">
+                        <input type="number" class="form-control" placeholder="N° de tarea" aria-label="name"
+                            aria-describedby="basic-addon1" id="itTaskNumber">
                     </div>
-                    <div class="float-end"><button type="button" class="btn btn-outline-danger" id="agregar"
-                            style="margin-right: 18px;">Eliminar tarea</button></div>
+                    <div class="alert alert-dismissible fade show" role="alert" id="msgDeleteTask" hidden> 
+                    </div>
+                    <div class="float-end">
+                        <button id="btnDeleteTask" type="button" class="btn btn-outline-danger" style="margin-right: 18px;">Eliminar tarea</button></div>
                 </div>
                 <div class="col-lg-4" id="done">
                     <!-- <h3>Por hacer</h3> -->
@@ -73,18 +79,7 @@
         <div class="row">
             <div class="col-lg-4" id="todo">
                 <h3>Por hacer</h3>
-                <template id="cardTemp">
-                    <div class="card" style="width: 18rem; margin: 15px;">
-                        <div class="card-body">
-                            <h5 class="card-title">titulo</h5>
-                            <p class="card-text">Descripción de la tarea</p>
-                            <button type="button" class="btn btn-outline-warning" name="agregar"
-                                style="margin-right: 18px;">Mover</button>
-                            <button type="button" class="btn btn-outline-danger" name="agregar"
-                                style="margin-right: 18px;">Eliminar tarea</button>
-                        </div>
-                    </div>
-                </template>
+                
             </div>
             <div class="col-lg-4" id="inProgress">
                 <h3>En progreso</h3>
@@ -94,11 +89,23 @@
             </div>
         </div>
     </div>
-
-
+<!-- Templates -->
+    <template id="cardTemp">
+        <div class="card" style="width: 18rem; margin: 15px;">
+            <div class="card-body">
+                <h5 class="card-title">titulo</h5>
+                <p class="card-text">Descripción de la tarea</p>
+                <button type="button" class="btn btn-outline-warning" name="agregar"
+                    style="margin-right: 18px;">Mover</button>
+                <button type="button" class="btn btn-outline-danger" name="agregar"
+                    style="margin-right: 18px;">Eliminar tarea</button>
+            </div>
+        </div>
+    </template>
     <!-- <script src="./script/ejercicio_en_clases.js"></script> -->
     <!-- <script src="./script/actividad1.js"></script> -->
-    <script src="./script/todoList.js"></script>
+    <!-- <script src="./script/todoList.js"></script> -->
+    <script src="./script/eventos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
