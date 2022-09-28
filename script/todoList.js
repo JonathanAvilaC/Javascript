@@ -1,3 +1,4 @@
+//classes
 class Task {
     constructor(task, descTask) {
         this.task = task;
@@ -5,6 +6,8 @@ class Task {
     }
 }
 
+
+//functions
 let addTask = (taskName, taskDesc) => {
     todoList.push(new Task(taskName, taskDesc));
     localStorage.setItem("todoList", JSON.stringify(todoList))
@@ -14,7 +17,8 @@ let deleteTask = (taskId) =>{
     if(todoList[taskId-1] == undefined){
         return -1
     }
-    todoList.splice((taskId-1))
+    todoList.splice((taskId-1), 1)
+    localStorage.setItem("todoList", JSON.stringify(todoList))
     loadTodoList()
     return 1
 }
@@ -38,15 +42,15 @@ const loadTodoList = () =>{
     }) 
 }
 
-let todoList = []
-localStorage.getItem("todoList") == null ? localStorage.setItem("todoList", JSON.stringify(todoList)) : todoList = JSON.parse(localStorage.getItem("todoList"))
 
+// variables
+const todoList = JSON.parse(localStorage.getItem("todoList")) || [] //Get Data
 const progressList = []
 const doneList = []
 
-
 loadTodoList()
 
+//components
 const btnAddTask = document.getElementById('btnAddTask')
 const btnDeleteTask = document.getElementById('btnDeleteTask')
 
