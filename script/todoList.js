@@ -80,7 +80,7 @@ btnDeleteTask.addEventListener("click", () =>{
         swalFn('La tarea ingresada no existe', 'error')
         return
     }
-    swalFn('Tarea eliminada correctamente', 'error')
+    swalFn('Tarea eliminada correctamente', 'success')
     msg.innerText = ""
     taskId.value = ''
     setTimeout(hiddenFn, 3000)
