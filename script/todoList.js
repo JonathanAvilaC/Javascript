@@ -6,7 +6,6 @@ class Task {
     }
 }
 
-
 //functions
 let addTask = (taskName, taskDesc) => {
     todoList.push(new Task(taskName, taskDesc));
@@ -23,11 +22,6 @@ let deleteTask = (taskId) =>{
     return 1
 }
 
-const hiddenFn = () =>{
-    document.getElementById('msgAddTask').hidden = true
-    document.getElementById('msgDeleteTask').hidden = true
-
-}
 
 const loadTodoList = () =>{
     const todoDiv = document.getElementById("todo")
@@ -42,58 +36,52 @@ const loadTodoList = () =>{
     }) 
 }
 
+const swalFn = (message, type) => {
+    Swal.fire(
+        message,
+        'Presiona OK para continuar',
+        type
+      )
+}
 
 // variables
 const todoList = JSON.parse(localStorage.getItem("todoList")) || [] //Get Data
 const progressList = []
 const doneList = []
 
+//Cargar tareas
 loadTodoList()
 
 //components
 const btnAddTask = document.getElementById('btnAddTask')
 const btnDeleteTask = document.getElementById('btnDeleteTask')
 
-
 btnAddTask.addEventListener("click", () =>{
+    
     const taskName = document.getElementById("iName")
     const taskDesc = document.getElementById("iDesc")
-    const msg = document.getElementById('msgAddTask')
-    msg.removeChild
-    msg.hidden = false;
     if(taskName.value == "")
     {
-        msg.classList.remove("alert-success")
-        msg.classList.add("alert-danger")
-        msg.innerText ="Debes ingresar un nombre en la tarea."
+        swalFn('Debes ingresar un nombre en la tarea', 'error')
         return
     }
+    swalFn('Tarea agregada correctamente', 'success')
     addTask(taskName.value, taskDesc.value)
-    msg.classList.remove("alert-danger")
-    msg.classList.add("alert-success")
-    msg.innerText = "Tarea agregada correctamente."
     taskName.value = ''
     taskDesc.value = ''
     loadTodoList()
     setTimeout(hiddenFn, 3000)
 })
 
-
 btnDeleteTask.addEventListener("click", () =>{
-    const taskId = document.getElementById("itTaskNumber")
-    const msg = document.getElementById('msgDeleteTask')
-    msg.removeChild
-    msg.hidden = false;
-    let idMsg = deleteTask(taskId.value);
+    const taskId = document.getElementById("idTaskNumber")
+    let idMsg = deleteTask(taskId.value) || 0;
     if(idMsg == -1){
-        msg.classList.remove("alert-success")
-        msg.classList.add("alert-danger")
-        msg.innerText ="La tarea ingresada no existe."
+        swalFn('La tarea ingresada no existe', 'error')
         return
     }
-    msg.classList.remove("alert-danger")
-    msg.classList.add("alert-success")
-    msg.innerText = "Tarea eliminada correctamente."
+    swalFn('Tarea eliminada correctamente', 'error')
+    msg.innerText = ""
     taskId.value = ''
     setTimeout(hiddenFn, 3000)
 })
