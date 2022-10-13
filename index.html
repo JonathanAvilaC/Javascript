@@ -62,9 +62,25 @@
                     <div class="float-end">
                         <button id="btnDeleteTask" type="button" class="btn btn-outline-danger" style="margin-right: 18px;">Eliminar tarea</button></div>
                 </div>
-                <div class="col-lg-4" id="done">
-                    <!-- <h3>Por hacer</h3> -->
+                <div class="col-lg-4">
+                    <H3>Notas</H3>
+                    <div class="overflow-auto" id="messages">
+
+                    </div>
+                    <!-- <div class="alert alert-primary" role="alert">
+                        A simple primary alert—check it out!
+                    </div>
+                    <div class="alert alert-primary" role="alert">
+                    A simple primary alert—check it out!
+                    </div>
+                    <div class="alert alert-primary" role="alert">
+                    A simple primary alert—check it out!
+                    </div>
+                    <div class="alert alert-primary" role="alert">
+                    A simple primary alert—check it out!
+                    </div> -->
                 </div>
+                
             </div>
         </div>
         <hr />
@@ -85,7 +101,7 @@
     </div>
 <!-- Templates -->
     <template id="cardTemp">
-        <div class="card" style="width: 18rem; margin: 15px;">
+        <div class="card" style="width: 18rem; margin: 15px;" draggable="true">
             <div class="card-body">
                 <h5 class="card-title">titulo</h5>
                 <p class="card-text">Descripción de la tarea</p>

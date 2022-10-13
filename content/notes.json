@@ -1,0 +1,14 @@
+{
+    "1": {
+        "Class": "info",
+        "Message":"Usando fetch para imprimir mensajes desde un archivo JSON"
+    },
+    "2": {
+        "Class": "warning",
+        "Message":"Integrando funcionalidad Drag and Drop (En progreso)"
+    },
+    "3": {
+        "Class": "danger",
+        "Message":"Borrar tarea no permite quitar elementos de la lista 'En progreso' o 'Hecho'"
+    }
+}

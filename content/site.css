@@ -3,3 +3,6 @@
     border-right: 1px solid #adb5bd;
     min-height: 600px;
 }
+#messages{
+    max-height: 250px;
+}
