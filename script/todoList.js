@@ -170,7 +170,7 @@ dragDropFN('#inProgress')
 dragDropFN('#done')
 
 //Fetch
-fetch("notes.json")
+fetch("content/notes.json")
 .then(resp => resp.json())
 .then(data =>{
     const mess = document.getElementById('messages')
