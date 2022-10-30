@@ -10,5 +10,9 @@
     "3": {
         "Class": "danger",
         "Message":"Viejo módulo de eliminar tareas fue reemplazado por botones en cada task"
+    },
+    "4": {
+        "Class": "danger",
+        "Message":"Sitio no es compatible con mobiles"
     }
 }
