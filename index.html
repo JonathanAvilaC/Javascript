@@ -44,7 +44,7 @@
                     <div class="input-group w-auto p-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-pen"></i></span>
                         <input type="text" class="form-control" placeholder="Descripción" aria-label="name"
-                            aria-describedby="basic-addon1" id="iDesc">
+                            aria-describedby="basic-addon1" maxlength="50" id="iDesc">
 
                     </div>
                     <div class="float-end"><button type="button" class="btn btn-outline-success" id="btnAddTask"
@@ -52,7 +52,7 @@
                     </div>
                     
                 </div>
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                     <H3>Borrar tarea</H3>
                     <div class="input-group w-auto p-3">
                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-list-ol"></i></span>
@@ -61,40 +61,27 @@
                     </div>
                     <div class="float-end">
                         <button id="btnDeleteTask" type="button" class="btn btn-outline-danger" style="margin-right: 18px;">Eliminar tarea</button></div>
-                </div>
-                <div class="col-lg-4">
+                </div> -->
+                <div class="col-lg-8">
                     <H3>Notas</H3>
                     <div class="overflow-auto" id="messages">
 
                     </div>
-                    <!-- <div class="alert alert-primary" role="alert">
-                        A simple primary alert—check it out!
-                    </div>
-                    <div class="alert alert-primary" role="alert">
-                    A simple primary alert—check it out!
-                    </div>
-                    <div class="alert alert-primary" role="alert">
-                    A simple primary alert—check it out!
-                    </div>
-                    <div class="alert alert-primary" role="alert">
-                    A simple primary alert—check it out!
-                    </div> -->
                 </div>
-                
             </div>
         </div>
         <hr />
     </div>
     <div class="container-xxl">
         <div class="row">
-            <div class="col-lg-4" id="todo">
+            <div class="col-lg-4" id="todoList">
                 <h3>Por hacer</h3>
                 
             </div>
-            <div class="col-lg-4" id="inProgress">
+            <div class="col-lg-4" id="progressList">
                 <h3>En progreso</h3>
             </div>
-            <div class="col-lg-4" id="done">
+            <div class="col-lg-4" id="doneList">
                 <h3>Hecho</h3>
             </div>
         </div>
@@ -105,10 +92,7 @@
             <div class="card-body">
                 <h5 class="card-title">titulo</h5>
                 <p class="card-text">Descripción de la tarea</p>
-                <button type="button" class="btn btn-outline-warning" name="agregar"
-                    style="margin-right: 18px;">Mover</button>
-                <button type="button" class="btn btn-outline-danger" name="agregar"
-                    style="margin-right: 18px;">Eliminar tarea</button>
+                <button type="button" class="btn btn-outline-danger" name="btnDeleteTask" style="width: 15.5rem; ">Eliminar tarea</button>
             </div>
         </div>
     </template>

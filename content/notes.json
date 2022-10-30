@@ -4,11 +4,11 @@
         "Message":"Usando fetch para imprimir mensajes desde un archivo JSON"
     },
     "2": {
-        "Class": "warning",
-        "Message":"Integrando funcionalidad Drag and Drop (En progreso)"
+        "Class": "success",
+        "Message":"Funcionalidad Drag and Drop integrada"
     },
     "3": {
         "Class": "danger",
-        "Message":"Borrar tarea no permite quitar elementos de la lista 'En progreso' o 'Hecho'"
+        "Message":"Viejo módulo de eliminar tareas fue reemplazado por botones en cada task"
     }
 }
